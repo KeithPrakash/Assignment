@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../axios/instants';
+import { ToastContainer, toast } from 'react-toastify';
 
 const TaskCreate= () => {
   const [fetched, setFetched] = useState<Array<any> | null>(null);
@@ -30,7 +31,7 @@ const TaskCreate= () => {
         assignedUserId,
       });
       console.log(response.status, 'created');
-      alert('Task created successfully');
+      toast('Task created successfully');
     } catch (error) {
       console.error('Error creating task:', error.response?.data || error.message);
     }
@@ -44,6 +45,7 @@ const TaskCreate= () => {
   };
   return (
     <div className="bg-slate-100 w-full h-screen flex flex-col items-center justify-center">
+      <ToastContainer/>
       <div className='flex flex-col p-10 bg-white text-base  rounded sm  w-[500px] gap-10 border shadow-xl'>
         <p className=' font-semibold text-2xl'>Create Task</p>
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "../axios/instants";
+import { ToastContainer, toast } from "react-toastify";
 type User = {
   firstName: string;
   lastName: string;
@@ -36,7 +37,7 @@ const CreateUser = () => {
     try {
       const response = await axios.post("user/createUser", payload);
       console.log("payload", payload);
-      console.log("User created successfully:", response.data);
+      toast("User created successfully:");
     } catch(error) {
       console.error(
         "Error creating user:",
@@ -47,6 +48,8 @@ const CreateUser = () => {
 
   return (
     <div className="h-screen w-full bg-slate-400 flex justify-center items-center">
+
+      <ToastContainer/>
       <div className="p-10 flex justify-center flex-col gap-5 bg-white rounded-lg">
         <p className="font-semibold text-2xl">Create User</p>
         <form onSubmit={createUser}>
